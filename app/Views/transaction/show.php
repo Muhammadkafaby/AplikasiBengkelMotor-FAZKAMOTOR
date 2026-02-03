@@ -39,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($details as $item): ?>
+                            <?php foreach ($transaction['details'] as $item): ?>
                                 <tr>
                                     <td>
                                         <div class="fw-semibold">
@@ -128,7 +128,7 @@
                 <div class="mb-3">
                     <label class="form-label small text-muted">Kasir</label>
                     <div>
-                        <?= esc($transaction['user_name']) ?>
+                        <?= esc($transaction['cashier_name']) ?>
                     </div>
                 </div>
 

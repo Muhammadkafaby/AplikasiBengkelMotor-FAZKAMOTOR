@@ -113,9 +113,9 @@
 <body>
     <div class="header">
         <h1>FAZKAMOTOR</h1>
-        <p>Bengkel Motor Terpercaya</p>
-        <p>Jl. Contoh No. 123, Kota</p>
-        <p>Telp: 0812-3456-7890</p>
+        <p>Your Ride, Our Pride</p>
+        <p>JL. Tentara Pelajar, Jatibarang, Indramayu</p>
+        <p>Telp: 0852-1846-7447</p>
     </div>
 
     <div class="info">
@@ -134,7 +134,7 @@
         <div class="info-row">
             <span>Kasir:</span>
             <span>
-                <?= esc($transaction['user_name']) ?>
+                <?= esc($transaction['cashier_name']) ?>
             </span>
         </div>
         <div class="info-row">
@@ -146,7 +146,7 @@
     </div>
 
     <div class="items">
-        <?php foreach ($details as $item): ?>
+        <?php foreach ($transaction['details'] as $item): ?>
             <div class="item">
                 <div class="item-name">
                     <?= esc($item['product_name']) ?>

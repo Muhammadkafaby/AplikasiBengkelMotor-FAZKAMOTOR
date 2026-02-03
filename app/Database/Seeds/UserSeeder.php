@@ -10,9 +10,9 @@ class UserSeeder extends Seeder
     {
         $data = [
             [
-                'username' => 'admin',
+                'username' => 'fazkamotor',
                 'email' => 'admin@fazkamotor.com',
-                'password' => password_hash('admin123', PASSWORD_DEFAULT),
+                'password' => password_hash('fazkamotorjatibarang', PASSWORD_DEFAULT),
                 'name' => 'Administrator',
                 'role' => 'admin',
                 'is_active' => 1,
@@ -20,9 +20,9 @@ class UserSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'username' => 'kasir',
+                'username' => 'fazkamotorkasir',
                 'email' => 'kasir@fazkamotor.com',
-                'password' => password_hash('kasir123', PASSWORD_DEFAULT),
+                'password' => password_hash('azkamotorjatibarangkasir', PASSWORD_DEFAULT),
                 'name' => 'Kasir 1',
                 'role' => 'kasir',
                 'is_active' => 1,
@@ -31,6 +31,6 @@ class UserSeeder extends Seeder
             ],
         ];
 
-        $this->db->table('fm_users')->insertBatch($data);
+        $this->db->table('users')->insertBatch($data);
     }
 }

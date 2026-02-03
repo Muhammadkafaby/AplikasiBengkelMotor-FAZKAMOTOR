@@ -14,13 +14,6 @@ class MainSeeder extends Seeder
         // Seed Categories
         $this->call('CategorySeeder');
 
-        // Seed Suppliers
-        $this->call('SupplierSeeder');
 
-        // Seed Customers
-        $this->call('CustomerSeeder');
-
-        // Seed Products
-        $this->call('ProductSeeder');
     }
 }

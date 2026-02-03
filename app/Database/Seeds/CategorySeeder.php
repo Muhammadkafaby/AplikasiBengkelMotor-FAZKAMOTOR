@@ -59,6 +59,6 @@ class CategorySeeder extends Seeder
             ],
         ];
 
-        $this->db->table('fm_categories')->insertBatch($data);
+        $this->db->table('categories')->insertBatch($data);
     }
 }

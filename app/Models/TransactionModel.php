@@ -162,4 +162,64 @@ class TransactionModel extends Model
 
         return $transaction;
     }
+
+    /**
+     * Get today's profit (sell price - buy price)
+     */
+    public function getTodayProfit(): array
+    {
+        $today = date('Y-m-d');
+
+        $db = \Config\Database::connect();
+        $builder = $db->table('fm_transaction_details td');
+
+        $result = $builder
+            ->select('SUM(td.subtotal) as total_revenue, SUM(p.buy_price * td.qty) as total_cost')
+            ->join('fm_transactions t', 't.id = td.transaction_id')
+            ->join('fm_products p', 'p.id = td.product_id')
+            ->where('DATE(t.created_at)', $today)
+            ->where('t.status', 'completed')
+            ->get()
+            ->getRowArray();
+
+        $revenue = (float) ($result['total_revenue'] ?? 0);
+        $cost = (float) ($result['total_cost'] ?? 0);
+        $profit = $revenue - $cost;
+
+        return [
+            'revenue' => $revenue,
+            'cost' => $cost,
+            'profit' => $profit,
+        ];
+    }
+
+    /**
+     * Get monthly profit (sell price - buy price)
+     */
+    public function getMonthlyProfit(): array
+    {
+        $month = date('Y-m');
+
+        $db = \Config\Database::connect();
+        $builder = $db->table('fm_transaction_details td');
+
+        $result = $builder
+            ->select('SUM(td.subtotal) as total_revenue, SUM(p.buy_price * td.qty) as total_cost')
+            ->join('fm_transactions t', 't.id = td.transaction_id')
+            ->join('fm_products p', 'p.id = td.product_id')
+            ->where('DATE_FORMAT(t.created_at, "%Y-%m")', $month)
+            ->where('t.status', 'completed')
+            ->get()
+            ->getRowArray();
+
+        $revenue = (float) ($result['total_revenue'] ?? 0);
+        $cost = (float) ($result['total_cost'] ?? 0);
+        $profit = $revenue - $cost;
+
+        return [
+            'revenue' => $revenue,
+            'cost' => $cost,
+            'profit' => $profit,
+        ];
+    }
 }

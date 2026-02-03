@@ -33,26 +33,89 @@
 
     <div class="col-12 col-sm-6 col-xl-3">
         <div class="stat-card info">
-            <i class="fas fa-box stat-icon"></i>
+            <i class="fas fa-hand-holding-usd stat-icon"></i>
             <div class="stat-value">
-                <?= $totalProducts ?>
+                <?= number_format($todayProfit['profit'], 0, ',', '.') ?>
             </div>
-            <div class="stat-label">Total Produk</div>
+            <div class="stat-label">Laba Hari Ini</div>
             <div class="mt-2 small opacity-75">
-                <i class="fas fa-check-circle me-1"></i> Aktif
+                <i class="fas fa-money-bill-wave me-1"></i>
+                Modal: Rp <?= number_format($todayProfit['cost'], 0, ',', '.') ?>
             </div>
         </div>
     </div>
 
     <div class="col-12 col-sm-6 col-xl-3">
         <div class="stat-card warning">
-            <i class="fas fa-users stat-icon"></i>
+            <i class="fas fa-piggy-bank stat-icon"></i>
             <div class="stat-value">
-                <?= $totalCustomers ?>
+                <?= number_format($monthlyProfit['profit'], 0, ',', '.') ?>
             </div>
-            <div class="stat-label">Total Customer</div>
+            <div class="stat-label">Laba Bulan Ini</div>
             <div class="mt-2 small opacity-75">
-                <i class="fas fa-user-check me-1"></i> Terdaftar
+                <i class="fas fa-money-bill-wave me-1"></i>
+                Modal: Rp <?= number_format($monthlyProfit['cost'], 0, ',', '.') ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Summary Row for Products & Customers -->
+<div class="row g-4 mb-4">
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body d-flex align-items-center">
+                <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3">
+                    <i class="fas fa-box text-primary fa-lg"></i>
+                </div>
+                <div>
+                    <div class="h4 mb-0"><?= $totalProducts ?></div>
+                    <small class="text-muted">Total Produk Aktif</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body d-flex align-items-center">
+                <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
+                    <i class="fas fa-users text-success fa-lg"></i>
+                </div>
+                <div>
+                    <div class="h4 mb-0"><?= $totalCustomers ?></div>
+                    <small class="text-muted">Total Customer</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body d-flex align-items-center">
+                <div class="rounded-circle bg-info bg-opacity-10 p-3 me-3">
+                    <i class="fas fa-shopping-cart text-info fa-lg"></i>
+                </div>
+                <div>
+                    <div class="h4 mb-0"><?= number_format($todayProfit['revenue'], 0, ',', '.') ?></div>
+                    <small class="text-muted">Omset Hari Ini</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body d-flex align-items-center">
+                <div class="rounded-circle bg-warning bg-opacity-10 p-3 me-3">
+                    <i class="fas fa-percentage text-warning fa-lg"></i>
+                </div>
+                <div>
+                    <?php
+                    $marginPercent = $todayProfit['revenue'] > 0
+                        ? ($todayProfit['profit'] / $todayProfit['revenue']) * 100
+                        : 0;
+                    ?>
+                    <div class="h4 mb-0"><?= number_format($marginPercent, 1) ?>%</div>
+                    <small class="text-muted">Margin Laba Hari Ini</small>
+                </div>
             </div>
         </div>
     </div>

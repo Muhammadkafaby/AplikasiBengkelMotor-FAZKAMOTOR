@@ -28,6 +28,8 @@ class Dashboard extends BaseController
             'title' => 'Dashboard',
             'todaySales' => $this->transactionModel->getTodaySales(),
             'monthlySales' => $this->transactionModel->getMonthlySales(),
+            'todayProfit' => $this->transactionModel->getTodayProfit(),
+            'monthlyProfit' => $this->transactionModel->getMonthlyProfit(),
             'lowStock' => $this->productModel->getLowStock(),
             'bestSelling' => $this->transactionDetailModel->getBestSelling(5),
             'chartData' => $this->transactionModel->getSalesChartData(7),
